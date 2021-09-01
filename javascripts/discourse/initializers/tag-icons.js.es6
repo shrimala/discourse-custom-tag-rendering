@@ -9,10 +9,36 @@ function iconTagRenderer(tag, params) {
   let tagIconList = settings.tag_icon_list.split("|");
 
   params = params || {};
-  const visibleName = Handlebars.Utils.escapeExpression(tag);
+
+  // Custom code here /////////////////////////////////////////////
+  // Allow visible name to be overridden.
+  //const visibleName = Handlebars.Utils.escapeExpression(tag);
+  let visibleName = Handlebars.Utils.escapeExpression(tag);
+
   tag = visibleName.toLowerCase();
 
   const classes = ["discourse-tag"];
+  
+  
+  // Custom code here ///////////////////////////////////////////////////////////////////////
+  // Handle hierachical tags
+  const roots = ['community','training','admin','events','hermitage'];
+  let tagParts = tag.split('-');
+  if (roots.includes(tagParts[0])) {
+     classes.push('hierachical-tag');
+     if(tagParts.length > 1) {
+         classes.push('child-tag');
+         visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
+         let tagIconItem = tagIconList.find((str) => {
+            return str.indexOf(",") > -1 ? tag === str.substr(0, str.indexOf(",")) : "";
+        });
+        if (!tagIconItem) {
+            tagIconList.push(tag + ',chevron-right');
+        }
+     }
+  }
+  // End custom code ///////////////////////////////////////////////////////////////////////  
+  
   const tagName = params.tagName || "a";
   let path;
   if (tagName === "a" && !params.noHref) {
