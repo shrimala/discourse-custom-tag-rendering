@@ -1,3 +1,4 @@
+// Inhermited from tag icons component
 .tag-icon > .d-icon {
   margin-right: 4px;
 }
@@ -5,4 +6,56 @@
 .select-kit .tag-icon > .d-icon {
   color: inherit;
   vertical-align: middle;
+}
+
+
+// Our tag rendering adds a chevron icon between hierachical tags
+// In this case we don't want to add a comma by speduo-class, 
+// but in all other cases we do.
+// This requires us to move the comma to :before not :after so we can target 
+// the element after a hierachical tag with a sibling selector. 
+// Switching the comma from :after to :before requires a lot of changes.
+.fps-result .discourse-tags .discourse-tag.simple{
+    margin-right:0px;
+}
+.discourse-tags, .list-tags, .search-category {
+    .discourse-tag.simple {
+        margin-right:0px;
+    }
+    
+    .discourse-tag.simple:not(:last-child):after, {
+        content: "";
+    }
+
+    .discourse-tag.simple:not(:first-child):before, {
+        content: ", ";
+    }
+    
+    .assigned-to:before {
+        content: " " !important;
+        margin-left: 0.5em;
+    }
+
+    // This is the relational selector
+    .discourse-tag.simple.hierachical-tag + .discourse-tag.simple.child-tag:before, {
+        content: "";
+        margin-left:0px;
+    }
+    .discourse-tag.simple.hierachical-tag {
+        margin-right: 0em;
+    }
+    .child-tag {
+        .svg-icon.d-icon-chevron-right {
+            margin-left: 0.1em;
+            margin-right: 0.1em;
+            width:0.7em;
+            height:0.7em;
+        }
+    }
+}
+
+
+.topic-list .link-bottom-line .discourse-tag.simple:after, 
+.topic-list .link-bottom-line .discourse-tag.box {
+    margin-right:0px;
 }
