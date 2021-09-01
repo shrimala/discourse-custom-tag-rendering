@@ -1,6 +1,6 @@
 {
-	"name": "Tag Icons",
-	"about_url": "https://github.com/discourse/discourse-tag-icons",
-	"license_url": "https://github.com/discourse/discourse-tag-icons/blob/main/LICENSE",
+	"name": "AHS Tag Rendering",
+	"about_url": "https://github.com/shrimala/discourse-custom-tag-rendering",
+	"license_url": "https://github.com/shrimala/discourse-custom-tag-rendering/blob/main/LICENSE",
 	"component": true
 }
