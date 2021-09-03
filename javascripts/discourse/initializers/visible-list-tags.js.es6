@@ -10,8 +10,7 @@ export default {
     api.modifyClass("model:topic", {
         @discourseComputed("tags")
         visibleListTags(tags) {
-            console.log("visible list ags called");
-            let visibleTags = this._super();
+            let visibleTags = this._super(...arguments) ?? [];
 
             let hierachicalTags = [];
             let otherTags = [];
