@@ -6,7 +6,7 @@ import { helperContext } from "discourse-common/lib/helpers";
 
 function iconTagRenderer(tag, params) {
   let { siteSettings, currentUser } = helperContext();
-  let tagIconList = settings.tag_icon_list.split("|");
+  let t = settings.tag_icon_list.split("|");
 
   params = params || {};
 
@@ -28,13 +28,22 @@ function iconTagRenderer(tag, params) {
      classes.push('hierachical-tag');
      if(tagParts.length > 1) {
          classes.push('child-tag');
-         visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
-         let tagIconItem = tagIconList.find((str) => {
-            return str.indexOf(",") > -1 ? tag === str.substr(0, str.indexOf(",")) : "";
-        });
-        if (!tagIconItem) {
-            tagIconList.push(tag + ',chevron-right');
-        }
+         if (params.noHref) {
+           visibleName = '';
+           tagParts.forEach(tagPart => {
+              visibleName += Handlebars.Utils.escapeExpression(tagPart) + ' ';
+           });
+         }
+         else {
+           visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
+           otherParts = Handlebars.Utils.escapeExpression(tagParts.join
+           let tagIconItem = tagIconList.find((str) => {
+              return str.indexOf(",") > -1 ? tag === str.substr(0, str.indexOf(",")) : "";
+          });
+          if (!tagIconItem) {
+              tagIconList.push(tag + ',chevron-right');
+          }
+        }   
      }
   }
   // End custom code ///////////////////////////////////////////////////////////////////////  
