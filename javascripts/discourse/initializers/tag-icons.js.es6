@@ -28,6 +28,16 @@ function iconTagRenderer(tag, params) {
      classes.push('hierachical-tag');
      if(tagParts.length > 1) {
          classes.push('child-tag');
+         if (params.noHref) {
+           // Special handling is needed within lists where we do want to show every pat of the tag.
+           //let escapedParts = tagParts.map(tagPart => '<span class="tag-part">' + Handlebars.Utils.escapeExpression(tagPart) + '</span>');
+           //let lastPart = escapedParts.pop();
+           //let tagIconHTML = `<span class="tag-icon">${iconHTML('chevron-right')}</span>`;
+           //let otherParts = `<span class="parents">${escapedParts.join(tagIconHTML)}</span>`;
+           //visibleName = otherParts + tagIconHtml + lastPart;
+           visibleName = tag;
+         }       
+       
          visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
          let tagIconItem = tagIconList.find((str) => {
             return str.indexOf(",") > -1 ? tag === str.substr(0, str.indexOf(",")) : "";
