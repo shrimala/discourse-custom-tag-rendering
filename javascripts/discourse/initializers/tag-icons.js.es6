@@ -32,9 +32,10 @@ function iconTagRenderer(tag, params) {
            // Special handling is needed within lists where we do want to show every pat of the tag.
            let escapedParts = tagParts.map(tagPart => '<span class="tag-part">' + Handlebars.Utils.escapeExpression(tagPart) + '</span>');
            let lastPart = escapedParts.pop();
-           let tagIconHTML = `<span class="tag-icon">${iconHTML('chevron-right')}</span>`;
-           let otherParts = `<span class="parents">${escapedParts.join(tagIconHTML)}</span>`;
-           visibleName = otherParts + tagIconHtml + lastPart;
+           //let tagIconHTML = `<span class="tag-icon">${iconHTML('chevron-right')}</span>`;
+           //let otherParts = `<span class="parents">${escapedParts.join(tagIconHTML)}</span>`;
+           //visibleName = otherParts + tagIconHtml + lastPart;
+           visibleName = lastPart;
          }
          else {
            visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
