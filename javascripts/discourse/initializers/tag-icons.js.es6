@@ -34,7 +34,7 @@ function iconTagRenderer(tag, params) {
            let lastPart = escapedParts.pop();
            let tagIconHTML = `<span class="tag-icon">${iconHTML('chevron-right')}</span>`;
            let otherParts = `<span class="parents">${escapedParts.join(tagIconHTML)}</span>`;
-           visibleName = otherParts + tagIconHtml + lastPart;
+           visibleName = otherParts + tagIconHTML + lastPart;
          }
          else {
             visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
