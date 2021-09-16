@@ -6,7 +6,7 @@ import { helperContext } from "discourse-common/lib/helpers";
 
 function iconTagRenderer(tag, params) {
   let { siteSettings, currentUser } = helperContext();
-  let t = settings.tag_icon_list.split("|");
+  let tagIconList = settings.tag_icon_list.split("|");
 
   params = params || {};
 
@@ -28,25 +28,13 @@ function iconTagRenderer(tag, params) {
      classes.push('hierachical-tag');
      if(tagParts.length > 1) {
          classes.push('child-tag');
-         if (params.noHref) {
-           // Special handling is needed within lists where we do want to show every pat of the tag.
-           //let escapedParts = tagParts.map(tagPart => '<span class="tag-part">' + Handlebars.Utils.escapeExpression(tagPart) + '</span>');
-           //let lastPart = escapedParts.pop();
-           //let tagIconHTML = `<span class="tag-icon">${iconHTML('chevron-right')}</span>`;
-           //let otherParts = `<span class="parents">${escapedParts.join(tagIconHTML)}</span>`;
-           //visibleName = otherParts + tagIconHtml + lastPart;
-           visibleName = tag;
-         }
-         else {
-           visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
-           otherParts = Handlebars.Utils.escapeExpression(tagParts.join
-           let tagIconItem = tagIconList.find((str) => {
-              return str.indexOf(",") > -1 ? tag === str.substr(0, str.indexOf(",")) : "";
-          });
-          if (!tagIconItem) {
-              tagIconList.push(tag + ',chevron-right');
-          }
-        }   
+         visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
+         let tagIconItem = tagIconList.find((str) => {
+            return str.indexOf(",") > -1 ? tag === str.substr(0, str.indexOf(",")) : "";
+        });
+        if (!tagIconItem) {
+            tagIconList.push(tag + ',chevron-right');
+        }
      }
   }
   // End custom code ///////////////////////////////////////////////////////////////////////  
