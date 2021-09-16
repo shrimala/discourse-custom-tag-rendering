@@ -44,13 +44,15 @@
     .discourse-tag.simple.hierachical-tag {
         margin-right: 0em;
     }
-    .child-tag {
-        .svg-icon.d-icon-chevron-right {
-            margin-left: 0.1em;
-            margin-right: 0.1em;
-            width:0.7em;
-            height:0.7em;
-        }
+}
+
+// Everywhere, including select lists.
+.child-tag {
+    .svg-icon.d-icon-chevron-right {
+        margin-left: 0.1em;
+        margin-right: 0.1em;
+        width:0.7em;
+        height:0.7em;
     }
 }
 
