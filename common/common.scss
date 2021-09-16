@@ -56,6 +56,16 @@
     }
 }
 
+// In selected area of select lists
+.select-kit.combo-box.mini-tag-chooser .selected-tags .selected-tag .tag-icon {
+    .svg-icon.d-icon-chevron-right {
+        margin-left: -0.15em;
+        width:0.5em;
+        height:0.5em;
+    }  
+}
+
+
 
 .topic-list .link-bottom-line .discourse-tag.simple:after, 
 .topic-list .link-bottom-line .discourse-tag.box {
