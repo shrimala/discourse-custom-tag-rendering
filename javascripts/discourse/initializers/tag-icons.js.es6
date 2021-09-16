@@ -36,15 +36,16 @@ function iconTagRenderer(tag, params) {
            //let otherParts = `<span class="parents">${escapedParts.join(tagIconHTML)}</span>`;
            //visibleName = otherParts + tagIconHtml + lastPart;
            visibleName = tag;
-         }       
-       
-         visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
-         let tagIconItem = tagIconList.find((str) => {
-            return str.indexOf(",") > -1 ? tag === str.substr(0, str.indexOf(",")) : "";
-        });
-        if (!tagIconItem) {
-            tagIconList.push(tag + ',chevron-right');
-        }
+         }
+         else {
+            visibleName = Handlebars.Utils.escapeExpression(tagParts.pop());
+            let tagIconItem = tagIconList.find((str) => {
+               return str.indexOf(",") > -1 ? tag === str.substr(0, str.indexOf(",")) : "";
+            });
+            if (!tagIconItem) {
+               tagIconList.push(tag + ',chevron-right');
+            }
+         }
      }
   }
   // End custom code ///////////////////////////////////////////////////////////////////////  
