@@ -8,7 +8,9 @@ export default {
 
 // Display tags in order of importance.
     api.modifyClass("model:topic", {
-        @discourseComputed("tags")
+        pluginId: 'discourse-custom-tag-rendering',
+
+      @discourseComputed("tags")
         visibleListTags(tags) {
             let visibleTags = this._super(...arguments) ?? [];
 
